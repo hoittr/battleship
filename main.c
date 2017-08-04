@@ -1,5 +1,5 @@
 /*
-// Testing out the "branch" feature! (sc)
+// Playing in atom w/ the github plugin (sc)
 CS-133U-0-33547 - C Programming
 Professor Janik
 
