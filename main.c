@@ -27,3 +27,18 @@ Out of Scope
 - Save & resume function
 
 */
+#include <stdio.h>
+#include "placement.h"
+
+int main() {
+  /* TESTING FOR PLACEMENT FUNCTION
+
+  int board[10][10];
+  int (*boardaddr)[10][10] = &board;
+  board[2][4] = 88;
+  placement(boardaddr, 1, 2, 3, 'E');
+
+  */
+
+
+}
