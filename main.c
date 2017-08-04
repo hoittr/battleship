@@ -6,7 +6,7 @@ Professor Janik
 Group Project
     Landon Winstead -
     Ryan Hoitt - ryan.hoitt@pcc.edu
-    Samantha Cleary -
+    Samantha Cleary - samantha.cleary@pcc.edu
 
 Battleship game for CS133U
 
