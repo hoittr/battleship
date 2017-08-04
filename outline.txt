@@ -1,0 +1,84 @@
+-	Macros for A-J
+o	i.e. #define AA 0
+o	i.e. #define BB 1
+
+-	Main - Samantha
+o	Setup both arrays.
+o	Setup pointers to each array.
+o	Have player enter name.
+o	Prompt AI to setup board.
+o	Prompt Player to setup board.
+o	Process player turn
+o	Process AI turn. (Separate function)
+
+-	Multi Dimensional Array
+o	One for Player
+o	One for Computer
+o	2 dimensional (A-J & 0-9) of type int
+♣	0 = Empty Space
+♣	1 = Miss
+♣	2 = Sunk
+♣	3 = Small Ship
+♣	4 = Medium Ship
+♣	5 = Large Ship
+♣	6 = Battle Ship
+♣	7 = Hit Small
+♣	8 = Hit Medium
+♣	9 = Hit Large
+♣	10 = Hit Battleship
+-	Functions Needed– Landon
+o	Draw Board 10x10
+♣	Inputs
+•	Pointer to Board
+♣	Special Functions
+•	Clear board before redrawing.
+o	Process Turn – Ryan & Samantha
+♣	Inputs
+•	Pointer to Player Board
+•	Pointer to Computer Board
+♣	Checks if any ships were completely sunk.
+•	Loop through array and check for # of ship.. If SUM(#) = 0 ship has sunk.
+•	If COUNT(8) == 4 THEN
+o	Printf(“You sunk my Medium”);
+o	Loop array change all 8’s to 2’s.
+•	If COUNT(10) == 5 THEN
+o	Printf(“You sunk my Battleship”);
+o	Loop array change all 10’s to 2’s.
+♣	Checks if all ships have sunk.
+•	If so, print win / lose message.
+o	Fire Missile - Ryan
+♣	Inputs
+•	Pointer to Array (Computer or Player)
+•	Row
+•	Col
+♣	Modifies Array in Place
+♣	Verifies that this is a correct move.
+•	Not already fired.
+•	Inside bounds of gameboard
+♣	Returns
+•	0 – Successful hit
+•	1 – Miss
+•	2 – Out of Bounds
+o	Place Ships - Ryan
+♣	Inputs
+•	Pointer to Array
+•	Row (Of Bow)
+•	Col (Of Bow)
+•	Ship (S, M, L, B)
+•	Direction (N, S, E, W)
+♣	Modifies Array in Place
+♣	Checks if it is a legal placement
+•	AKA not intersecting another ship.
+•	Not off the board.
+•	Ship has not been placed already.
+
+
+A B C D E F G
+0 0 0 7 7 0 0 0
+0 7 0 2 0 0 0 0
+0 7 0 2 0 0 0 0
+0 7 0 2 0 0 0 0
+0 0 0 2 0 0 0 0
+0 0 0 2 0 0 0 0
+
+Meeting again: Friday @ 1PM
