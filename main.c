@@ -45,6 +45,7 @@ int main() {
   // WHY DO I NEED THIS?!?!?
   // Compiler / CPU error? When I init the array without clearing it, it is full
   // of junk data?!?
+  // https://stackoverflow.com/questions/1414215/initial-value-of-int-array-in-c
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
       board[i][j] = 0;
