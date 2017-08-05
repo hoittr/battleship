@@ -22,3 +22,4 @@
 */
 
 int placement(int (*board)[10][10], int row, int col, int ship, char direction);
+int sanityCheck(int (*board)[10][10], int row, int col, int length, char direction);

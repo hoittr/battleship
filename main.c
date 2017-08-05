@@ -1,5 +1,5 @@
 /*
-// Playing in atom w/ the github plugin (sc)
+// Testing out the "branch" feature! (sc)
 CS-133U-0-33547 - C Programming
 Professor Janik
 
@@ -29,16 +29,39 @@ Out of Scope
 */
 #include <stdio.h>
 #include "placement.h"
+#include "drawboard.h"
 
 int main() {
-  /* TESTING FOR PLACEMENT FUNCTION
+
+/* =================================================================
+
+  // AUTOMATIC TESTING FOR PLACEMENT FUNCTION
+  // Uncomment this section to isolate and test placement.c
+  // Leave commented normally.
 
   int board[10][10];
   int (*boardaddr)[10][10] = &board;
-  board[2][4] = 88;
-  placement(boardaddr, 1, 2, 3, 'E');
 
-  */
+  // WHY DO I NEED THIS?!?!?
+  // Compiler / CPU error? When I init the array without clearing it, it is full
+  // of junk data?!?
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+      board[i][j] = 0;
+    }
+  }
+  int res;
 
+  // TEST 1 - Should succeed. Places carrier in 0 0 N
+  res = placement(boardaddr, 6, 6, 1, 'N');
+  if (res != 0) {
+    printf("TEST FAIL: ERROR CODE: %i\n", res);
+  } else {
+    printf("TEST PASS\n");
+  };
+
+  drawBoard(boardaddr, boardaddr);
+=================================================================
+*/
 
 }
