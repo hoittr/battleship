@@ -48,10 +48,10 @@ int placement(int (*board)[10][10], int row, int col, int ship, char direction) 
     case 0: // Sanity checks passed. Continue on with placing ship.
       break;
     case 1: // Sanity check failed for OOB condition.
-      printf("Ship would be out of bounds, please try again.\n");
+      //printf("Ship would be out of bounds, please try again.\n");
       return 1; // Error code for OOB
     case 2: // Sanity check failed for intersecting with another ship.
-      printf("Ship would intersect another, please try again.\n");
+      //printf("Ship would intersect another, please try again.\n");
       return 2; // Error code for intersect
   }
 
