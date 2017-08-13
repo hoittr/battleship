@@ -75,21 +75,8 @@ int main() {
 int AIPlacement(int (*boardaddr)[10][10], int ship) {
   int row = rand() % 9;
   int col = rand() % 9;
-  int dir = rand() % 4;
-  char dirChar;
-  switch (dir) {
-    case 0:
-      dirChar = 'N';
-      break;
-    case 1:
-      dirChar = 'S';
-      break;
-    case 2:
-      dirChar = 'E';
-      break;
-    case 3:
-      dirChar = 'W';
-      break;
-  }
-  return placement(boardaddr,row,col,ship,dirChar);
+  int cardinal[4] = {78,83,69,87};
+  int random = rand ()%4;
+  char dir = cardinal[random];
+  return placement(boardaddr,row,col,ship,dir);
 }
