@@ -23,7 +23,29 @@
 #include <stdio.h>
 #include "placement.h"
 
-int placement(int (*board)[10][10], int row, int col, int ship, char direction) {
+int getLength(int ship){
+
+  switch(ship) { // Depending on the ship selected, we have different lengths.
+    case 1: // Carrier
+      return 5;
+      break;
+    case 2: // Battleship
+      return 4;
+      break;
+    case 3: // Cruiser
+      return 3;
+      break;
+    case 4: //Submarine
+      return 3;
+      break;
+    case 5: //Destroyer
+      return 2;
+      break;
+      break;
+  }
+}
+
+int placement(int (*board)[][10], int row, int col, int ship, char direction) {
   int length; // Init variable to hold length
   switch(ship) { // Depending on the ship selected, we have different lengths.
     case 1: // Carrier
@@ -40,6 +62,7 @@ int placement(int (*board)[10][10], int row, int col, int ship, char direction) 
       break;
     case 5: //Destroyer
       length = 2;
+      break;
       break;
   }
 
@@ -87,8 +110,8 @@ int placement(int (*board)[10][10], int row, int col, int ship, char direction) 
 // in part of the ship being out of bounds.
 int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direction)) {
   switch(direction) {
-    case 'N':
-      if (row + length > 10) { // Check to see if we would be out of bounds.
+    case 'S':
+      if (row + length >= 10|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
       for(int i = 0; i < length; i++) {
@@ -97,8 +120,8 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
         }
       }
       break;
-    case 'S':
-      if (row - length < -1) { // Check to see if we would be out of bounds.
+    case 'N':
+      if (row - length <= -1|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
       for(int i = 0; i < length; i++) {
@@ -107,8 +130,8 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
         }
       }
       break;
-    case 'E':
-      if (col - length < -1) { // Check to see if we would be out of bounds.
+    case 'W':
+      if (col - length <= -1|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
       for(int i = 0; i < length; i++) {
@@ -117,8 +140,8 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
         }
       }
       break;
-    case 'W':
-      if (col + length > 10) { // Check to see if we would be out of bounds.
+    case 'E':
+      if (col + length >= 10|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
       for(int i = 0; i < length; i++) {
