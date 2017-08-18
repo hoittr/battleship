@@ -35,7 +35,10 @@ Out of Scope
 #include <ctype.h>
 
 int AIPlacement(int (*boardaddr)[10][10], int ship); // Placement FUNCTION
-
+int boardAI[10][10];
+int (*boardAIaddr)[10][10] = &boardAI;
+int boardPlayer[10][10];
+int (*boardPlayeraddr)[10][10] = &boardPlayer;
 
 int main() {
   char playerName [20];
@@ -43,13 +46,13 @@ int main() {
   time_t t;
   int row=0, col=0, val=0, ship, i =0;
   srand((unsigned) time(&t)); // Init the RNG
-  
+
 /* Welcome / Prompt User for Name */
 printf("\t*** BATTLESHIP ***\n");
 printf("Please enter your name: ");
 scanf ("%s", &playerName);
 printf ("Welcome to BATTLESHIP, %s!\n", playerName);
-	
+
 
 //Player Board Setup
 int *setup; // sets up player board.
@@ -75,9 +78,26 @@ for (ship = 1; ship<6;ship++){
 	char dir = val;
 	printf("You have selected: %i = ship, %i = row, %i= col, %c= direction", ship, row, col, toupper(dir));
 
+  // If there is an error in player placement, decrement the counter to repeat loop.
+  if (placement(boardPlayeraddr,row,col,ship,dir) != 0) {
+    ship--;
+  }
+
+  // Plase the AI ships on the board randomly
+  for (int x = 0; x < 6; x++) {
+    while(AIPlacement(boardAIaddr, x) > 0) {
+      //Dont do anything
+    }
+  }
+
+
+  // DEBUGGING NOT FOR GAME UUSE
+  drawBoard(boardAIaddr, boardAIaddr);
+  drawBoard(boardPlayeraddr, boardPlayeraddr);
+
 }
 
-//=================================================================
+/*/=================================================================
 
   // AUTOMATIC TESTING FOR PLACEMENT FUNCTION
   // Uncomment this section to isolate and test placement.c
@@ -106,7 +126,7 @@ for (ship = 1; ship<6;ship++){
 
   drawBoard(boardaddr, boardaddr);
 // =================================================================
-
+*/
 }
 
 int AIPlacement(int (*boardaddr)[10][10], int ship) {
