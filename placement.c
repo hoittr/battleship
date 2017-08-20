@@ -25,7 +25,7 @@
 
 int getLength(int ship){
 
-  switch(ship) { // Depending on the ship selected, we have different lengths.
+  switch(ship) { // Get length of ship to write to player board array.
     case 1: // Carrier
       return 5;
       break;
@@ -110,7 +110,7 @@ int placement(int (*board)[][10], int row, int col, int ship, char direction) {
 // in part of the ship being out of bounds.
 int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direction)) {
   switch(direction) {
-    case 'S':
+    case 'N':
       if (row + length >= 10|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
@@ -120,7 +120,7 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
         }
       }
       break;
-    case 'N':
+    case 'S':
       if (row - length <= -1|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
@@ -130,7 +130,7 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
         }
       }
       break;
-    case 'W':
+    case 'E':
       if (col - length <= -1|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
@@ -140,7 +140,7 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
         }
       }
       break;
-    case 'E':
+    case 'W':
       if (col + length >= 10|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
@@ -153,3 +153,4 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
   }
   return 0;
 }
+

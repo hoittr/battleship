@@ -48,50 +48,42 @@ scanf ("%s", &playerName);
 printf ("Welcome to BATTLESHIP, %s!\n", playerName);
 
 
-//Player Board Setup
-int *setup; // sets up player board.
-printf("\n#\tClass of ship\tSize\n");
-printf("1\tCarrier \t5\n");
-printf("2\tBattleship \t4\n");
-printf("3\tCruiser \t3\n");
-printf("4\tSubmarine \t3\n");
-printf("5\tDestroyer \t2\n");
-
 for (ship = 1; ship<6;ship++){
+	//Player Board Setup
+	int *setup; // sets up player board.
+	printf("\n#\tClass of ship\tSize\n");
+	printf("1\tCarrier \t5\n");
+	printf("2\tBattleship \t4\n");
+	printf("3\tCruiser \t3\n");
+	printf("4\tSubmarine \t3\n");
+	printf("5\tDestroyer \t2\n");
 	printf("\n\t ***** FOR SHIP #%i *****\n", ship);
-	printf("Please indicate the row you would like to place the ship (A-J):\n");
+	printf("Please indicate where you'd like to place the bow (FRONT) of your ship: (A-J):\n");
 	printf("> ");
 	scanf("%s", &val);
 	row = toupper(val) - 65; //val stores as ASCII. Subtracting 65 = letter decimal value.
 	printf("Please indicate the column you would like to place the ship (0-9):\n");
 	printf("> ");
 	scanf("%i", &col);
-	printf("Which way would you like your ship to point (N,S,E,W)?\n");
+	printf("Which way would you like the bow (FRONT) to face (N,S,E,W)?\n");
 	printf("> ");
 	scanf("%s", &val);
 	char direction = val;
 	length = getLength(ship);
-	printf("You have selected: %i = ship, %i = row, %i= col, %c= direction, %i = length", ship, row, col, toupper(direction), length);
+	printf("You have selected: %i = ship, %i = row, %i= col, %c= direction, %i = length\n", ship, row, col, toupper(direction), length);
 
-	if (sanityCheck(boardPlayeraddr, row, col, length,  toupper(direction)) !=0) { //check if player inputs are off board
-	  ship--;
+	if (sanityCheck(boardPlayeraddr, row, col, length, toupper(direction)) !=0) { //check if player inputs are off board
+	  ship--; // decrement counter to repeat loop
 	  printf("\nInvalid placement. Please try again.");
 	}
 	else {
-		
-		
+	  placement(boardPlayeraddr,row,col,ship,toupper(direction));
+	  drawBoard(boardPlayeraddr, boardPlayeraddr);
 	}
-		
 
-
-  // If there is an error in player placement, decrement the counter to repeat loop.
-  if (placement(boardPlayeraddr,row,col,ship,direction) != 0) {
-    ship--;
-	printf("Invalid placement. Please try again.");
-  }
   }
 
-  // Plase the AI ships on the board randomly
+  // Place the AI ships on the board randomly
   for (int x = 0; x < 6; x++) {
     while(AIPlacement(boardAIaddr, x) > 0) {
       //Dont do anything
