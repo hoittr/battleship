@@ -108,7 +108,7 @@ int fireMissile(int (*board)[][10],int row, int col) {
    int number of ships remaining
 */
 int checkProgress(int (*board)[][10]) {
-  int one, two, three, four, five, count;
+  int one = 0, two = 0, three = 0, four = 0, five = 0, count = 0;
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
       switch ((*board)[i][j]) {

@@ -51,16 +51,18 @@ int main() {
 
   gameSetup(); // Ask player for name, ship placement, and setup the AI board.
 
-  int playerShipsRemaining = checkProgress(boardPlayeraddr);
-  int AIShipsRemaining = checkProgress(boardAIaddr);
+  int playerShipsRemaining = 1;
+  int AIShipsRemaining = 1;
+
   while (playerShipsRemaining > 0 && AIShipsRemaining > 0) {
     processTurn();
     processAITurn();
     clearScreen();
-    printf("=====COMPUTER BOARD=====\n");
-    drawBoard(boardAIaddr, 0);
-    printf("SHIPS REMAINING: %i\n", AIShipsRemaining);
-    printf("=====PLAYER BOARD=====\n");
+    playerShipsRemaining = checkProgress(boardPlayeraddr);
+    AIShipsRemaining = checkProgress(boardAIaddr);
+    printf("=====COMPUTER BOARD===== (%i) SHIPS REMAINING ======\n", AIShipsRemaining);
+    drawBoard(boardAIaddr, 1); // 1 = CHEATMODE 0 = NORMAL MODE
+    printf("=====PLAYER BOARD===== (%i) SHIPS REMAINING ======\n", playerShipsRemaining);
     drawBoard(boardPlayeraddr, 1);
   }
 
