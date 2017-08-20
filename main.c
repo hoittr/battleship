@@ -34,11 +34,13 @@ int (*boardAIaddr)[10][10] = &boardAI;
 int boardPlayer[10][10];
 int (*boardPlayeraddr)[10][10] = &boardPlayer;
 int length;
+
 char playerName [20];
 
 void gameSetup();
 void clearScreen ();
 int processTurn();
+int processAITurn();
 
 
 int main() {
@@ -49,19 +51,36 @@ int main() {
 
   gameSetup(); // Ask player for name, ship placement, and setup the AI board.
 
-  while (1) {
+  int playerShipsRemaining = checkProgress(boardPlayeraddr);
+  int AIShipsRemaining = checkProgress(boardAIaddr);
+  while (playerShipsRemaining > 0 && AIShipsRemaining > 0) {
     processTurn();
-
+    processAITurn();
+    clearScreen();
+    printf("=====COMPUTER BOARD=====\n");
     drawBoard(boardAIaddr, 0);
-  
+    printf("SHIPS REMAINING: %i\n", AIShipsRemaining);
+    printf("=====PLAYER BOARD=====\n");
+    drawBoard(boardPlayeraddr, 1);
   }
 
+  if (AIShipsRemaining == 0 ) {
+    printf("YOU WON!\n");
+  } else {
+    printf("YOU LOST!\n");
+  }
+
+}
+
+int processAITurn () {
+  int row = rand() % 9;
+  int col = rand() % 9;
+  return fireMissile(boardPlayeraddr,row,col);
 }
 
 int processTurn () {
   int row, col; // Init variables
   char val;
-  drawBoard(boardAIaddr, 1); // CHEATMODE
   printf("Fire Missle!!!\n");
   printf("(A-J): \n");
   printf("> ");

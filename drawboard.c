@@ -99,3 +99,52 @@ int fireMissile(int (*board)[][10],int row, int col) {
   }
 
 }
+
+/* INPUTS:
+ int *board -- a pointer to the game board [10x10 array of ints]
+
+
+ RETURNS:
+   int number of ships remaining
+*/
+int checkProgress(int (*board)[][10]) {
+  int one, two, three, four, five, count;
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+      switch ((*board)[i][j]) {
+        case 1:
+          one++;
+          break;
+        case 2:
+          two++;
+          break;
+        case 3:
+          three++;
+          break;
+        case 4:
+          four++;
+          break;
+        case 5:
+          five++;
+          break;
+      }
+    }
+  }
+  if (one > 0) {
+    count++;
+  }
+  if (two > 0) {
+    count++;
+  }
+  if (three > 0) {
+    count++;
+  }
+  if (four > 0) {
+    count++;
+  }
+  if (five > 0) {
+    count++;
+  }
+
+  return count;
+}

@@ -14,3 +14,4 @@
 
 int drawBoard(int (*playerBoard)[][10], int hideShips);
 int fireMissile(int (*board)[][10],int row, int col);
+int checkProgress(int (*board)[][10]);
