@@ -12,4 +12,4 @@
       3 - Fail ship already placed.
 */
 
-int drawBoard(int (*playerBoard)[][10], int (*computerBoard)[][10]);
+int drawBoard(int (*playerBoard)[][10]);

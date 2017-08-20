@@ -12,13 +12,13 @@
 #include <stdio.h>
 #include "drawboard.h"
 
-int drawBoard(int (*playerBoard)[][10], int (*computerBoard)[][10]) {
-  printf("# - 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9\n");
+int drawBoard(int (*board)[][10]) {
+  printf("# - A - B - C - D - E - F - G - H - I - J\n");
   printf("-----------------------------------------\n");
   for (int i = 0; i < 10; i++) {
     printf("%i |", i);
     for (int j = 0; j < 10; j++) {
-      printf(" %i  ", (*playerBoard)[i][j]);
+      printf(" %i  ", (*board)[i][j]);
     }
     printf("\n");
   }

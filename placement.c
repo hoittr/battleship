@@ -154,3 +154,11 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
   return 0;
 }
 
+int AIPlacement(int (*boardaddr)[10][10], int ship) {
+  int row = rand() % 9;
+  int col = rand() % 9;
+  int cardinal[4] = {78,83,69,87};
+  int random = rand ()%4;
+  char direction = cardinal[random];
+  return placement(boardaddr,row,col,ship,direction);
+}
