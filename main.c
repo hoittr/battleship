@@ -35,7 +35,7 @@ int boardPlayer[10][10];
 int (*boardPlayeraddr)[10][10] = &boardPlayer;
 int length;
 char playerName [20];
-int fireMissile(int (*board)[][10],int row, int col);
+
 void gameSetup();
 void clearScreen ();
 int processTurn();
@@ -46,16 +46,22 @@ int main() {
   srand((unsigned) time(&t)); // Init the RNG
 
   clearScreen(); // Clear the screen
+
   gameSetup(); // Ask player for name, ship placement, and setup the AI board.
 
-  processTurn();
+  while (1) {
+    processTurn();
+
+    drawBoard(boardAIaddr, 0);
+  
+  }
 
 }
 
 int processTurn () {
   int row, col; // Init variables
   char val;
-  drawBoard(boardAIaddr); // CHEATMODE
+  drawBoard(boardAIaddr, 1); // CHEATMODE
   printf("Fire Missle!!!\n");
   printf("(A-J): \n");
   printf("> ");
@@ -73,14 +79,7 @@ int processTurn () {
   return 0;
 }
 
-int fireMissile(int (*board)[][10],int row, int col) {
 
-  if ((*board)[row][col] != 0) {
-    (*board)[row][col] = 9; // Mark as hit on the board
-    return 1; // return sucessful hit
-  }
-  return 0; // MISS
-}
 
 void clearScreen () {
   for (int i = 0; i < SCREENSIZE; i++) {
@@ -103,7 +102,6 @@ void gameSetup () {
   for (int ship = 1; ship<6;ship++){
   	//Player Board Setup
 
-  	int *setup; // sets up player board.
   	printf("\n#\tClass of ship\tSize\n");
   	printf("1\tCarrier \t5\n");
   	printf("2\tBattleship \t4\n");
@@ -130,7 +128,7 @@ void gameSetup () {
   	  printf("\nInvalid placement. Please try again.");
     } else {
       clearScreen();
-  	  drawBoard(boardPlayeraddr);
+  	  drawBoard(boardPlayeraddr, 1);
   	}
 
   }

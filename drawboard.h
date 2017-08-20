@@ -12,4 +12,5 @@
       3 - Fail ship already placed.
 */
 
-int drawBoard(int (*playerBoard)[][10]);
+int drawBoard(int (*playerBoard)[][10], int hideShips);
+int fireMissile(int (*board)[][10],int row, int col);
