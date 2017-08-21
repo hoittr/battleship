@@ -22,6 +22,7 @@
 
 #include <stdio.h>
 #include "placement.h"
+#include <stdlib.h>
 
 int getLength(int ship){
 
@@ -111,7 +112,7 @@ int placement(int (*board)[][10], int row, int col, int ship, char direction) {
 int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direction)) {
   switch(direction) {
     case 'N':
-      if (row + length >= 10|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
+      if (row + length > 10|| row > 10|| col > 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
       for(int i = 0; i < length; i++) {
@@ -121,7 +122,7 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
       }
       break;
     case 'S':
-      if (row - length <= -1|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
+      if (row - length < -1|| row > 10|| col > 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
       for(int i = 0; i < length; i++) {
@@ -131,7 +132,7 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
       }
       break;
     case 'E':
-      if (col - length <= -1|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
+      if (col - length < -1|| row > 10|| col > 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
       for(int i = 0; i < length; i++) {
@@ -141,7 +142,7 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
       }
       break;
     case 'W':
-      if (col + length >= 10|| row >= 10|| col >= 10 ) { // Check to see if we would be out of bounds.
+      if (col + length > 10|| row > 10|| col > 10 ) { // Check to see if we would be out of bounds.
         return 1; // Error return
       }
       for(int i = 0; i < length; i++) {
@@ -155,8 +156,8 @@ int (sanityCheck(int (*board)[10][10], int row, int col, int length, char direct
 }
 
 int AIPlacement(int (*boardaddr)[10][10], int ship) {
-  int row = rand() % 9;
-  int col = rand() % 9;
+  int row = rand() % 10;
+  int col = rand() % 10;
   int cardinal[4] = {78,83,69,87};
   int random = rand ()%4;
   char direction = cardinal[random];

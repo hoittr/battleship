@@ -64,7 +64,7 @@ int drawBoard(int (*board)[][10], int hideShips) {
             printf(" M  ");
             break;
           case 9:
-            printf(" H  ");
+            printf(" X  ");
             break;
           default:
             printf(" ?  ");

@@ -62,14 +62,14 @@ int main() {
     AIShipsRemaining = checkProgress(boardAIaddr);
     printf("=====COMPUTER BOARD===== (%i) SHIPS REMAINING ======\n", AIShipsRemaining);
     drawBoard(boardAIaddr, 1); // 1 = CHEATMODE 0 = NORMAL MODE
-    printf("=====PLAYER BOARD===== (%i) SHIPS REMAINING ======\n", playerShipsRemaining);
+    printf("\n=====PLAYER BOARD===== (%i) SHIPS REMAINING ======\n", playerShipsRemaining);
     drawBoard(boardPlayeraddr, 1);
   }
 
   if (AIShipsRemaining == 0 ) {
-    printf("YOU WON!\n");
+    printf("\nYOU WON!\n");
   } else {
-    printf("YOU LOST!\n");
+    printf("\nYOU LOST!\n");
   }
 
 }
@@ -116,8 +116,18 @@ void gameSetup () {
   /* Welcome / Prompt User for Name */
   printf("\t*** BATTLESHIP ***\n");
   printf("Please enter your name: ");
-  scanf ("%c", &playerName);
+  fgets(playerName, 20, stdin); //changed to fgets to read whitespace. -sc
   printf ("Welcome to BATTLESHIP, %s!\n", playerName);
+  printf("\n\t\t ***RULES***\n"); //added rules -sc
+  printf("Place your ships on your grid based upon the coordinates.\n");
+  printf("You and the computer player will take turns guessing\n");
+  printf("Each other's ship coordinates.\n");
+  printf("Whoever sinks the other player's ships first\n");
+  printf("will be declared the winner!\n");
+  printf("\n\t\t***LEGEND***\n");
+  printf(" m = MISS!\n");
+  printf(" X = HIT!\n");
+  
 
 
   for (int ship = 1; ship<6;ship++){
@@ -130,7 +140,7 @@ void gameSetup () {
   	printf("4\tSubmarine \t3\n");
   	printf("5\tDestroyer \t2\n");
   	printf("\n\t ***** FOR SHIP #%i *****\n", ship);
-  	printf("Please indicate where you'd like to place the bow (FRONT) of your ship: (A-J):\n");
+  	printf("Please indicate the column to place the bow (FRONT) of your ship: (A-J):\n");
   	printf("> ");
   	scanf("%s", &val);
   	col = toupper(val) - 65; //val stores as ASCII. Subtracting 65 = letter decimal value.
