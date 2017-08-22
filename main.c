@@ -33,6 +33,8 @@ int boardAI[10][10];
 int (*boardAIaddr)[10][10] = &boardAI;
 int boardPlayer[10][10];
 int (*boardPlayeraddr)[10][10] = &boardPlayer;
+int usedCords [10][10] = {{0}}; //array of coordinates used by RNG
+int (*usedCordaddr) [10][10] = &usedCords;
 int length;
 
 char playerName [20];
@@ -56,14 +58,15 @@ int main() {
 
   while (playerShipsRemaining > 0 && AIShipsRemaining > 0) {
     processTurn();
-    processAITurn();
-    clearScreen();
+    processAITurn(usedCordaddr);
+    //clearScreen();
     playerShipsRemaining = checkProgress(boardPlayeraddr);
     AIShipsRemaining = checkProgress(boardAIaddr);
     printf("=====COMPUTER BOARD===== (%i) SHIPS REMAINING ======\n", AIShipsRemaining);
-    drawBoard(boardAIaddr, 1); // 1 = CHEATMODE 0 = NORMAL MODE
+    drawBoard(boardAIaddr, 0); // 1 = CHEATMODE 0 = NORMAL MODE
     printf("\n=====PLAYER BOARD===== (%i) SHIPS REMAINING ======\n", playerShipsRemaining);
-    drawBoard(boardPlayeraddr, 1);
+    drawBoard(boardPlayeraddr, 0);
+
   }
 
   if (AIShipsRemaining == 0 ) {
@@ -71,15 +74,21 @@ int main() {
   } else {
     printf("\nYOU LOST!\n");
   }
-
 }
 
-int processAITurn () {
-  int row = rand() % 9;
-  int col = rand() % 9;
+int processAITurn (int(*usedCords)[10][10]) { 
+  int row, col;
+  do {
+    row = rand() % 10;
+    col = rand() % 10;
+  } while(*usedCords [row][col] !=0);
+  (*usedCords) [row][col] = 1; // for some reason, having these two lines seems to be the only way to write to the usedCoords array
+  *usedCords [row][col] = 1; //2nd line
   return fireMissile(boardPlayeraddr,row,col);
 }
 
+
+  
 int processTurn () {
   int row, col; // Init variables
   char val;

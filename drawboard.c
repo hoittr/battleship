@@ -28,22 +28,22 @@ int drawBoard(int (*board)[][10], int hideShips) {
   for (int i = 0; i < 10; i++) {
     printf("%i |", i);
     for (int j = 0; j < 10; j++) {
-      if (!hideShips) { // Ships are hidden, only show ? or H
+      if (!hideShips) { // Ships are hidden, only show ? or X
         switch ((*board)[i][j]) {
           case 9:
-            printf(" H  ");
+            printf(" X  ");
             break;
           case 8:
             printf(" M  ");
             break;
           default:
-            printf(" ?  ");
+            printf(" ?  "); 
             break;
         }
       } else {
         switch ((*board)[i][j]) {
           case 0:
-            printf(" ?  ");
+            printf(" ?  "); 
             break;
           case 1:
             printf(" C  ");
@@ -67,7 +67,7 @@ int drawBoard(int (*board)[][10], int hideShips) {
             printf(" X  ");
             break;
           default:
-            printf(" ?  ");
+            printf(" ?  "); 
             break;
         }
       }
