@@ -82,8 +82,8 @@ int processAITurn (int(*usedCords)[10][10]) {
     row = rand() % 10;
     col = rand() % 10;
   } while(*usedCords [row][col] !=0);
-  (*usedCords) [row][col] = 1; // for some reason, having these two lines seems to be the only way to write to the usedCoords array
-  *usedCords [row][col] = 1; //2nd line
+  (*usedCords) [row][col] = 1; // writes '1' to usedCoords array; prevents same coords from being used later. -sc
+  *usedCords [row][col] = 1; //for some reason, having both lines in here worked. I'm not going to mess with it -sc
   return fireMissile(boardPlayeraddr,row,col);
 }
 
@@ -102,9 +102,9 @@ int processTurn () {
   scanf("%i", &row);
   printf("Fired Missle at %i %i\n", col, row);
   if (fireMissile(boardAIaddr,row,col) != 0) {
-    printf("HIT!!!\n");
+    printf("\nHIT!!!\n");
   } else {
-    printf("MISS\n");
+    printf("\nMISS\n");
   }
   return 0;
 }
@@ -122,7 +122,7 @@ void gameSetup () {
 
   int row=0, col=0, val=0, i =0;
 
-  /* Welcome / Prompt User for Name */
+  /* Welcome / Prompt User for Name / Rules */
   printf("\t*** BATTLESHIP ***\n");
   printf("Please enter your name: ");
   fgets(playerName, 20, stdin); //changed to fgets to read whitespace. -sc
@@ -134,7 +134,7 @@ void gameSetup () {
   printf("Whoever sinks the other player's ships first\n");
   printf("will be declared the winner!\n");
   printf("\n\t\t***LEGEND***\n");
-  printf(" m = MISS!\n");
+  printf(" M = MISS!\n");
   printf(" X = HIT!\n");
   
 
@@ -148,7 +148,7 @@ void gameSetup () {
   	printf("3\tCruiser \t3\n");
   	printf("4\tSubmarine \t3\n");
   	printf("5\tDestroyer \t2\n");
-  	printf("\n\t ***** FOR SHIP #%i *****\n", ship);
+  	printf("\n\t ***** FOR SHIP #%i *****\n", ship); 
   	printf("Please indicate the column to place the bow (FRONT) of your ship: (A-J):\n");
   	printf("> ");
   	scanf("%s", &val);
@@ -165,7 +165,7 @@ void gameSetup () {
 
   	if (placement(boardPlayeraddr,row,col,ship,toupper(direction)) !=0) { //check if player inputs are off board
   	  ship--; // decrement counter to repeat loop
-  	  printf("\nInvalid placement. Please try again.");
+  	  printf("\nInvalid placement. Please try again.\n");
     } else {
       clearScreen();
   	  drawBoard(boardPlayeraddr, 1);
